@@ -1,4 +1,6 @@
-﻿int? maybe = 12;
+﻿using System.Reflection.Metadata;
+
+int? maybe = 12;
 
 if (maybe is int number)
 {
@@ -86,3 +88,35 @@ List<string[]> ReadRecords()
 {
     throw new NotImplementedException();
 }    
+
+public class C
+{
+    public void Send<T, U>(T packet) /* where U : class */
+        where T : /* class, */ U
+    {
+        if (packet is U keepalive)
+        {
+            // Do stuff with keepalive
+        }
+
+        switch (packet)
+        {
+            case U keepalivePacket:
+                // Do stuff with keepalivePacket
+                break;
+        }
+    }
+}
+//
+// void Attack<T>(T weapon, IEnemy enemy) where T : IWeapon
+// {
+//     switch (weapon)
+//     {
+//         case Sword sword:
+//             // process sword attack
+//             break;
+//         case Bow bow:
+//             // process bow attack
+//             break;
+//     }
+// }
